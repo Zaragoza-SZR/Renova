@@ -1,0 +1,329 @@
+/* Custom Scrollbar */
+
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255, 0, 0, 0);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--orange);
+  border-radius: 2px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--orange-light);
+}
+
+
+/* ===== ОБЩИЕ СТИЛИ ===== */
+
+/* CSS ПЕРЕМЕННЫЕ */
+:root {
+  /* Цветовая палитра */
+  --white: #FFFFFF;
+  --black: #000000;
+  --orange: #FF6B35;
+  --orange-light: #FF8C42;
+  --blue: #1A4B8C;
+  --blue-light: #2A5D9E;
+  --blue-dark: #0d2b52;
+  --blue-bg: #F0F5FF;
+  
+  /* Текст */
+  --text-dark: #333333;
+  --text-light: #666666;
+  --text-white: #FFFFFF;
+  
+  /* Тени */
+  --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.15);
+  --shadow-xl: 0 15px 40px rgba(0, 0, 0, 0.12);
+  
+  /* Градиенты */
+  --gradient-blue: linear-gradient(135deg, var(--blue) 0%, var(--blue-light) 100%);
+  --gradient-orange: linear-gradient(135deg, var(--orange) 0%, var(--orange-light) 100%);
+  --gradient-hero: linear-gradient(135deg, var(--white) 0%, var(--blue-bg) 100%);
+  
+  /* Размеры */
+  --container-width: 1200px;
+  --border-radius: 8px;
+  --border-radius-lg: 12px;
+  
+  /* Отступы */
+  --space-xs: 8px;
+  --space-sm: 16px;
+  --space-md: 24px;
+  --space-lg: 32px;
+  --space-xl: 48px;
+  --space-xxl: 80px;
+  
+  /* Шрифты */
+  --font-primary: 'Montserrat', sans-serif;
+  --font-secondary: 'Open Sans', sans-serif;
+  
+  /* Z-index уровни */
+  --z-dropdown: 1000;
+  --z-sticky: 1020;
+  --z-fixed: 1030;
+  --z-modal: 1040;
+  --z-popover: 1050;
+  --z-tooltip: 1060;
+  --z-intro: 9999;
+}
+
+/* СБРОС СТИЛЕЙ */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ТИПОГРАФИКА */
+body {
+  font-family: var(--font-secondary);
+  color: var(--text-dark);
+  line-height: 1.6;
+  overflow-x: hidden;
+  font-size: 16px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-primary);
+  font-weight: 700;
+  margin-bottom: var(--space-md);
+  line-height: 1.2;
+}
+
+h1 { font-size: 3.5rem; }
+h2 { font-size: 2.5rem; }
+h3 { font-size: 1.8rem; }
+h4 { font-size: 1.5rem; }
+
+p {
+  margin-bottom: var(--space-md);
+  line-height: 1.7;
+}
+
+/* LAYOUT КОМПОНЕНТЫ */
+.container {
+  width: 100%;
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: 0 var(--space-md);
+}
+
+.btn {
+  display: inline-block;
+  padding: 12px 28px;
+  border-radius: var(--border-radius);
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  font-family: var(--font-primary);
+  cursor: pointer;
+  border: none;
+  text-align: center;
+  font-size: 1rem;
+}
+
+.btn-primary {
+  background-color: var(--orange);
+  color: var(--white);
+}
+
+.btn-primary:hover {
+  background-color: var(--orange-light);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.btn-secondary {
+  background-color: var(--blue);
+  color: var(--white);
+}
+
+.btn-secondary:hover {
+  background-color: var(--blue-light);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* СЕКЦИИ И ЗАГОЛОВКИ */
+.section-title {
+  text-align: center;
+  margin-bottom: var(--space-xxl);
+}
+
+.section-title h2 {
+  position: relative;
+  display: inline-block;
+}
+
+.section-title h2:after {
+  content: '';
+  position: absolute;
+  width: 80px;
+  height: 4px;
+  background-color: var(--orange);
+  bottom: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.section {
+  padding: var(--space-xxl) 0;
+}
+
+.section-sm { padding: var(--space-xl) 0; }
+.section-lg { padding: calc(var(--space-xxl) * 1.5) 0; }
+
+/* АНИМАЦИИ */
+
+/* Intro анимации */
+@keyframes rotate_intro {
+  0% { 
+    transform: rotate(0deg) scale(0.8);
+    opacity: 0;
+  }
+  50% { 
+    transform: rotate(180deg) scale(1.1);
+  }
+  100% { 
+    transform: rotate(360deg) scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes stopRotate {
+  to { transform: rotate(360deg) scale(1); }
+}
+
+@keyframes fadeInUp {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes introExit {
+  0% { opacity: 1; transform: scale(1); }
+  70% { opacity: 0.5; transform: scale(1.1); }
+  100% { opacity: 0; transform: scale(1.2); display: none; }
+}
+
+/* Общие анимации */
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+  100% { transform: translateY(0px); }
+}
+
+@keyframes rotate {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-50px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(50px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.8); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* Анимации для появления элементов при скролле */
+.scroll-animate {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 0.8s ease;
+}
+
+.scroll-animate.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.scroll-animate-left {
+  opacity: 0;
+  transform: translateX(-50px);
+  transition: all 0.8s ease;
+}
+
+.scroll-animate-left.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.scroll-animate-right {
+  opacity: 0;
+  transform: translateX(50px);
+  transition: all 0.8s ease;
+}
+
+.scroll-animate-right.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* GRID И FLEX СИСТЕМЫ */
+.grid { display: grid; gap: var(--space-lg); }
+.grid-2 { grid-template-columns: repeat(2, 1fr); }
+.grid-3 { grid-template-columns: repeat(3, 1fr); }
+.grid-4 { grid-template-columns: repeat(4, 1fr); }
+
+.flex { display: flex; }
+.flex-center { display: flex; justify-content: center; align-items: center; }
+.flex-between { display: flex; justify-content: space-between; align-items: center; }
+.flex-around { display: flex; justify-content: space-around; align-items: center; }
+
+/* АДАПТИВНОСТЬ */
+
+/* Большие десктопы */
+@media (min-width: 1400px) {
+  .container { max-width: 1320px; }
+}
+
+/* Планшеты (ландшафт) */
+@media (max-width: 1199px) {
+  .container { max-width: 960px; }
+  .grid-4 { grid-template-columns: repeat(3, 1fr); }
+}
+
+/* Планшеты (портрет) */
+@media (max-width: 991px) {
+  .container { max-width: 720px; }
+  .grid-3, .grid-4 { grid-template-columns: repeat(2, 1fr); }
+  .section { padding: var(--space-xl) 0; }
+  
+  body { font-size: 14px; }
+  h1 { font-size: 2.5rem; }
+  h2 { font-size: 2rem; }
+  h3 { font-size: 1.5rem; }
+}
+
+/* Телефоны (ландшафт) */
+@media (max-width: 767px) {
+  .container { max-width: 540px; }
+  .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+  .flex-between, .flex-around { flex-direction: column; gap: var(--space-md); }
+  .section { padding: var(--space-lg) 0; }
+}
+
+/* Телефоны (портрет) */
+@media (max-width: 575px) {
+  .container { padding: 0 var(--space-sm); }
+  .btn { width: 100%; max-width: 250px; margin-bottom: var(--space-sm); }
+}
