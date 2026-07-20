@@ -1,0 +1,169 @@
+.projects {
+  padding: 100px 0;
+  background-color: var(--blue-bg);
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 1s ease;
+}
+
+.projects.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.project-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 30px;
+}
+
+.project-card {
+  background-color: var(--white);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  transition: all 0.3s ease;
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.projects.visible .project-card {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Анимация для каждой карточки с задержкой */
+.projects.visible .project-card:nth-child(1) {
+  transition-delay: 0.1s;
+}
+
+.projects.visible .project-card:nth-child(2) {
+  transition-delay: 0.2s;
+}
+
+.projects.visible .project-card:nth-child(3) {
+  transition-delay: 0.3s;
+}
+
+.project-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+}
+
+.project-image {
+  height: 200px;
+  background: linear-gradient(135deg, var(--blue) 0%, var(--blue-light) 100%);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.project-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.image-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: var(--white);
+  font-size: 1rem;
+}
+
+.image-placeholder i {
+  font-size: 3rem;
+  margin-bottom: 10px;
+  opacity: 0.8;
+}
+
+.project-card:hover .project-image img {
+  transform: scale(1.05);
+}
+
+.project-content {
+  padding: 25px;
+}
+
+.project-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 15px;
+}
+
+.project-tag {
+  background-color: var(--blue-bg);
+  color: var(--blue);
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  font-family: var(--font-primary);
+}
+
+.project-card h3 {
+  color: var(--blue);
+  margin-bottom: 10px;
+  font-family: var(--font-primary);
+  font-size: 1.3rem;
+}
+
+.project-card p {
+  color: var(--text-light);
+  margin-bottom: 20px;
+  line-height: 1.6;
+  font-family: var(--font-secondary);
+}
+
+.project-link {
+  color: var(--blue);
+  text-decoration: none;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  transition: all 0.3s ease;
+  font-family: var(--font-primary);
+}
+
+.project-link:hover {
+  color: var(--orange);
+}
+
+.project-link i {
+  margin-left: 8px;
+  transition: transform 0.3s;
+}
+
+.project-link:hover i {
+  transform: translateX(5px);
+}
+
+@media (max-width: 768px) {
+  .project-cards {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .projects {
+    padding: 80px 0;
+  }
+}
+
+@media (max-width: 576px) {
+  .project-cards {
+    grid-template-columns: 1fr;
+  }
+  
+  .project-content {
+    padding: 20px;
+  }
+  
+  .project-image {
+    height: 180px;
+  }
+}
