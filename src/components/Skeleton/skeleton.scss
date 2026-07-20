@@ -1,0 +1,71 @@
+// Переменные для скелетона
+$skeleton-bg: #e2e5e7;
+$skeleton-highlight: #f0f2f5;
+
+// Анимация пульсации
+@keyframes skeleton-pulse {
+  0% {
+    background-color: $skeleton-bg;
+  }
+  50% {
+    background-color: $skeleton-highlight;
+  }
+  100% {
+    background-color: $skeleton-bg;
+  }
+}
+
+.skeleton-pulse {
+  animation: skeleton-pulse 1.5s ease-in-out infinite;
+}
+
+// Специфичные стили для блоков скелетона
+.skeleton-card {
+  pointer-events: none; // Отключаем клики и ховеры для скелетона
+
+  // Отключаем hover-эффекты оригинальной карточки
+  &:hover {
+    transform: none;
+
+  }
+
+  &__image {
+    width: 100%;
+    height: 250px; // Примерная высота вашей картинки
+  }
+
+  &__date {
+    width: 100px;
+    height: 35px;
+    border-radius: 0 0 8px 0;
+    align-self: flex-start;
+  }
+
+  &__title {
+    width: 80%;
+    height: 24px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+  }
+
+  &__text-line {
+    width: 100%;
+    height: 14px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+
+    // Последняя строка описания обычно короче
+    &.short {
+      width: 60%;
+      margin-bottom: 30px; 
+    }
+  }
+
+  &__button {
+    width: 140px;
+    height: 20px;
+    border-radius: 4px;
+    align-self: flex-start;
+    margin-top: auto; // Прижимает кнопку к низу, если карточки разной высоты
+  }
+}

@@ -1,0 +1,204 @@
+/* Переменные (можно вынести в общий файл) */
+$white: #ffffff;
+$orange: #ff6b35;
+$blue: #1a4b8c;
+$blue-dark: #0d2b52;
+$shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+
+.app-footer {
+  background: linear-gradient(135deg, $blue 0%, $blue-dark 100%);
+  color: $white;
+  padding: 80px 0 30px;
+
+  .orange-line {
+    height: 5px;
+    background-color: $orange;
+    margin-bottom: 50px;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  .footer-content {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1.5fr;
+    gap: 40px;
+    margin-bottom: 50px;
+  }
+
+  .footer-column h3 {
+    color: $white;
+    margin-bottom: 25px;
+    font-size: 1.3rem;
+    position: relative;
+    padding-bottom: 10px;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 700;
+
+    &:after {
+      content: "";
+      position: absolute;
+      width: 50px;
+      height: 3px;
+      background-color: $orange;
+      bottom: 0;
+      left: 0;
+    }
+  }
+
+  .footer-about p {
+    margin-bottom: 25px;
+    opacity: 0.9;
+    line-height: 1.7;
+  }
+
+  .footer-links ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    li {
+      margin-bottom: 12px;
+    }
+
+    a {
+      color: $white;
+      text-decoration: none;
+      opacity: 0.8;
+      transition: all 0.3s;
+      display: flex;
+      align-items: center;
+
+      &:hover {
+        opacity: 1;
+        color: $orange;
+        transform: translateX(5px);
+      }
+
+      i {
+        margin-right: 8px;
+        font-size: 0.9rem;
+      }
+    }
+  }
+
+  .footer-contact p {
+    display: flex;
+    align-items: center;
+    margin-bottom: 18px;
+    opacity: 0.9;
+
+    i {
+      margin-right: 12px;
+      color: $white;
+      width: 20px;
+      text-align: center;
+    }
+  }
+
+  .social-links {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+
+    a {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 45px;
+      height: 45px;
+      background-color: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      color: $white;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      font-size: 1.2rem;
+
+      &:hover {
+        background-color: $orange;
+        transform: translateY(-5px);
+      }
+    }
+  }
+
+  .footer-subscribe {
+    margin-top: 20px;
+
+    p {
+      margin-bottom: 15px;
+      opacity: 0.9;
+    }
+  }
+
+  .subscribe-form {
+    display: flex;
+    margin-top: 15px;
+
+    input {
+      flex: 1;
+      padding: 12px 15px;
+      border: none;
+      border-radius: 4px 0 0 4px;
+      font-family: "Open Sans", sans-serif;
+
+      &:focus {
+        outline: none;
+      }
+    }
+
+    button {
+      background-color: $orange;
+      color: $white;
+      border: none;
+      padding: 0 20px;
+      border-radius: 0 4px 4px 0;
+      cursor: pointer;
+      transition: background-color 0.3s;
+
+      &:hover {
+        background-color: lighten($orange, 10%);
+      }
+    }
+  }
+
+  .footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    padding-top: 25px;
+    text-align: center;
+    opacity: 0.7;
+    font-size: 0.9rem;
+  }
+
+  // Адаптивность
+  @media (max-width: 992px) {
+    .footer-content {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .footer-content {
+      grid-template-columns: 1fr;
+      gap: 30px;
+    }
+  }
+
+  @media (max-width: 576px) {
+    .subscribe-form {
+      flex-direction: column;
+
+      input {
+        border-radius: 4px;
+        margin-bottom: 10px;
+      }
+
+      button {
+        border-radius: 4px;
+        padding: 12px;
+      }
+    }
+  }
+}

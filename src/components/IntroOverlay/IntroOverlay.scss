@@ -1,0 +1,96 @@
+/* IntroOverlay.css */
+.intro-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #2364b8 0%, #7a97bc 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  opacity: 1;
+  transition:
+  opacity 1s ease,
+  transform 1s ease;
+}
+
+.intro-exit {
+  animation: introExit 1.5s cubic-bezier(0.77, 0, 0.175, 1) forwards;
+}
+
+.intro-container {
+  text-align: center;
+  color: #ffffff;
+}
+
+.intro-logo {
+  width: 120px;
+  height: 120px;
+  margin: 0 auto 30px;
+  animation:
+    rotate_intro 2s ease-in-out forwards,
+    stopRotate 0.5s ease-in-out 2s forwards;
+}
+
+.intro-title {
+  font-size: 3.5rem;
+  font-weight: 700;
+  margin-bottom: 15px;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 1s ease-out 2.2s forwards;
+  font-family: "Montserrat", sans-serif;
+}
+
+.intro-subtitle {
+  font-size: 1.5rem;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 1s ease-out 2.8s forwards;
+}
+
+/* Ключевые кадры */
+@keyframes rotate_intro {
+  0% {
+    transform: rotate(0deg) scale(0.8);
+    opacity: 0;
+  }
+  50% {
+    transform: rotate(180deg) scale(1.1);
+  }
+  100% {
+    transform: rotate(360deg) scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes stopRotate {
+  to {
+    transform: rotate(360deg) scale(1);
+  }
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes introExit {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  70% {
+    opacity: 0.5;
+    transform: scale(1.1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.2);
+    display: none;
+  }
+}
